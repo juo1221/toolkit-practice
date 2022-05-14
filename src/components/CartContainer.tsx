@@ -1,7 +1,11 @@
 import CartItem from "./CartItem";
-import cartList from "../cartItems";
+import { useAppDispatch, useAppSelector } from "../store/store";
+import { clearCart } from "../features/cartSlice";
 
 const CartContainer = () => {
+  const dispatch = useAppDispatch();
+  const { cartItems, amount, total } = useAppSelector((store) => store.cart);
+
   //   if (amount < 1) {
   //     return (
   //       <section className="cart">
@@ -18,7 +22,7 @@ const CartContainer = () => {
         <h2>your bag</h2>
       </header>
       <div>
-        {cartList.map((item) => (
+        {cartItems.map((item) => (
           <CartItem key={item.id} {...item} />
         ))}
       </div>
@@ -26,10 +30,12 @@ const CartContainer = () => {
         <hr />
         <div className="cart-total">
           <h4>
-            total <span></span>
+            total <span>{total.toFixed(2)}</span>
           </h4>
         </div>
-        <button className="btn clear-btn">clear cart</button>
+        <button className="btn clear-btn" onClick={() => dispatch(clearCart())}>
+          clear cart
+        </button>
       </footer>
     </section>
   );
