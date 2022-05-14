@@ -1,14 +1,7 @@
 import { ChevronDown, ChevronUp } from "../icons";
 import { useAppDispatch } from "../store/store";
+import { Items } from "../features/types";
 import { removeItem, increase, decrease } from "../features/cartSlice";
-
-export type Items = {
-  id: string;
-  img: string;
-  title: string;
-  price: string;
-  amount: number;
-};
 
 const CartItem: React.FC<Items> = ({ id, img, title, price, amount }) => {
   const dispatch = useAppDispatch();

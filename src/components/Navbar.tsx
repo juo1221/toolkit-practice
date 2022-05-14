@@ -3,7 +3,6 @@ import { useAppSelector } from "../store/store";
 
 const Navbar = () => {
   const { amount } = useAppSelector((store) => store.cart);
-  console.log(amount);
   return (
     <>
       <nav>
