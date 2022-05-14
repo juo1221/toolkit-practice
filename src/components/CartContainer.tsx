@@ -1,7 +1,6 @@
 import CartItem from "./CartItem";
 import { useAppDispatch, useAppSelector } from "../store/store";
-import { clearCart } from "../features/cartSlice";
-
+import { openModal } from "../features/modalSlice";
 const CartContainer = () => {
   const dispatch = useAppDispatch();
   const { cartItems, amount, total } = useAppSelector((store) => store.cart);
@@ -33,7 +32,7 @@ const CartContainer = () => {
             total <span>{total.toFixed(2)}</span>
           </h4>
         </div>
-        <button className="btn clear-btn" onClick={() => dispatch(clearCart())}>
+        <button className="btn clear-btn" onClick={() => dispatch(openModal())}>
           clear cart
         </button>
       </footer>
