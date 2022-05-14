@@ -1,8 +1,8 @@
 import { ChevronDown, ChevronUp } from "../icons";
-import { useAppDispatch, useAppSelector } from "../store/store";
+import { useAppDispatch } from "../store/store";
 import { removeItem, increase, decrease } from "../features/cartSlice";
 
-type Items = {
+export type Items = {
   id: string;
   img: string;
   title: string;

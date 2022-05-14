@@ -1,7 +1,14 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import cartList from "../cartItems";
+import { Items } from "../components/CartItem";
 
-const initialState = {
+type TInitialState = {
+  cartItems: Items[];
+  amount: number;
+  total: number;
+};
+
+const initialState: TInitialState = {
   cartItems: cartList,
   amount: 4,
   total: 0,
@@ -14,15 +21,15 @@ const cartSlice = createSlice({
     clearCart: (state) => {
       state.cartItems = [];
     },
-    removeItem: (state, { payload }) => {
+    removeItem: (state, { payload }: PayloadAction<string>) => {
       state.cartItems = state.cartItems.filter((item) => item.id !== payload);
     },
-    increase: (state, { payload }) => {
+    increase: (state, { payload }: PayloadAction<string>) => {
       const item = state.cartItems.find((item) => item.id === payload);
       if (!item) return;
       item.amount = item.amount + 1;
     },
-    decrease: (state, { payload }) => {
+    decrease: (state, { payload }: PayloadAction<string>) => {
       const item = state.cartItems.find((item) => item.id === payload);
       if (!item || item.amount <= 0) return;
       item.amount = item.amount - 1;
